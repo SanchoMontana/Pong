@@ -1,7 +1,7 @@
 import Pong
 
 class Paddle:
-    def __init__(self, x, y, height, girth, vel):
+    def __init__(self, x, y, height, girth):
         self.x = x
         self.y = y
         self.height = height
@@ -18,6 +18,8 @@ class Paddle:
         pass
     def shrink(self):
         pass
+
     def reset(self):
-        pass
+        self.y = Pong.DISPLAY_HEIGHT / 2
+        self.vel = 0
 
