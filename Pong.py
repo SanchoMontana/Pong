@@ -44,9 +44,10 @@ def main():
     game_exit = False
 
     def draw():
-        # Todo: Draw the score of each player on the top of the screen
         # Updates the black background, everything that is drawn should be after this.
         gameDisplay.fill(BLACK)
+
+        
 
         # Draws the middle line
         for i in range(20):
@@ -56,7 +57,18 @@ def main():
         pygame.draw.rect(gameDisplay, WHITE, [P2.x - P2.girth / 2, P2.y - P1.height / 2, P2.girth, P2.height])
         # Draws the ball
         pygame.draw.circle(gameDisplay, WHITE, (int(ball.x), int(ball.y)), ball.radius)
+
+        # Draws the score of each player on the top of the screen
+        font = pygame.font.SysFont(None, 128)
+        leftScoreText = font.render(str(score[0]), True, WHITE)
+        gameDisplay.blit(leftScoreText, (DISPLAY_WIDTH / 2 - 75, 10))
+
+        rightScoreText = font.render(str(score[1]), True, WHITE)
+        gameDisplay.blit(rightScoreText, (DISPLAY_WIDTH / 2 + 25, 10))
+        
         pygame.display.update()
+
+        
 
     while not game_exit:
         for event in pygame.event.get():
@@ -105,7 +117,8 @@ def main():
                 start_round(ball, -10)
             if score[0] >= 5 or score [1] >=  5:
                 # Win condition
-                # Todo: Display that player 1 or 2 wins then give them an optoin to play again.
+                # Todo: Display that player 1 or 2 wins then give them an option to play again.
+                
                 pygame.quit()
                 quit()
 
