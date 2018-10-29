@@ -15,7 +15,7 @@ class Ball:
 
     def move(self):
 
-        # Simply changes the x and y componant of the ball according to its current velocity.
+        # Simply changes the x and y component of the ball according to its current velocity.
         self.x += self.x_vel
         self.y += self.y_vel
 
@@ -26,7 +26,7 @@ class Ball:
         
         # Main part of the collision detection with the paddle, firstly it check if the ball made contact with then it
         # splits the paddle into five imaginary sections and sees which section the ball made contact with. Lastly, the
-        # y_vel is changed accordinly and the x_vel is changed to keep the same total velocity of the ball.
+        # y_vel is changed accordingly and the x_vel is changed to keep the same total velocity of the ball.
         # There is a little bit of randomness just so that the ball "should" never return to a perfectly straight path.
         
         if p1.y - p1.height / 2 - self.tolerance <= self.y <= p1.y + p1.height / 2 + self.tolerance:
@@ -57,27 +57,32 @@ class Ball:
                 p2_sections = [p2.y - p2.height / 2 - self.tolerance + ((p2.height + 2 * self.tolerance) / 5 * i) 
                                for i in range(6)]
                 if p2_sections[0] <= self.y <= p2_sections[1]:
-                    self.y_vel -= self.vel * 0.2 + random.randint(-5, 5) * 0.01
+                    self.y_vel -= self.vel * 0.3 + random.randint(-5, 5) * 0.01
                 elif p2_sections[1] <= self.y <= p2_sections[2]:
-                    self.y_vel -= self.vel * 0.1 + random.randint(-5, 5) * 0.01
+                    self.y_vel -= self.vel * 0.2 + random.randint(-5, 5) * 0.01
                 elif p2_sections[3] <= self.y <= p2_sections[4]:
-                    self.y_vel += self.vel * 0.1 + random.randint(-5, 5) * 0.01
-                elif p2_sections[4] <= self.y <= p2_sections[5]:
                     self.y_vel += self.vel * 0.2 + random.randint(-5, 5) * 0.01
+                elif p2_sections[4] <= self.y <= p2_sections[5]:
+                    self.y_vel += self.vel * 0.3 + random.randint(-5, 5) * 0.01
 
                 if self.y_vel > 0:
                     self.y_vel = min(self.y_vel, 0.8 * self.vel)
                 else:
                     self.y_vel = max(self.y_vel, -0.8 * self.vel)
-                print("HELLLLLLO")
                 self.x_vel = -((self.vel ** 2 - self.y_vel ** 2) ** 0.5)
 
                 # Increment hit count
                 self.hit_count += 1
 
         # Accelerates the ball every five contacts with a paddle.
+        # After 2 speed increases, the paddles begin to shrink.
         if self.hit_count >= 5:
-            self.vel += 1
+            if self.vel < Pong.BALL_START_VEL + 2:
+                self.vel += 1
+            else:
+                if p1.height >= 40:
+                    p1.shrink()
+                    p2.shrink()
             self.hit_count = 0
 
     def goal(self):
@@ -93,4 +98,3 @@ class Ball:
         self.y_vel = 0
         self.vel = 0
         self.hit_count = 0
-
