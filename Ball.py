@@ -12,6 +12,7 @@ class Ball:
         self.vel = (self.x_vel ** 2 + self.y_vel ** 2) ** 0.5
         self.tolerance = 5  # Allowing a collision if the center of the ball is just off the paddle
         self.hit_count = 0  # This will allow for the velocity of the ball to increase every 5 paddle hits.
+        self.last = None
 
     def move(self):
 
@@ -49,6 +50,8 @@ class Ball:
                     self.y_vel = max(self.y_vel, -0.8 * self.vel)
                 self.x_vel = (self.vel ** 2 - self.y_vel ** 2) ** 0.5
 
+                # Shows last hit to decide who the PowerUp goes to
+                self.last = p1
                 # Increment hit count
                 self.hit_count += 1
 
@@ -71,6 +74,8 @@ class Ball:
                     self.y_vel = max(self.y_vel, -0.8 * self.vel)
                 self.x_vel = -((self.vel ** 2 - self.y_vel ** 2) ** 0.5)
 
+                # Shows last hit to decide who the PowerUp goes to
+                self.last = p2
                 # Increment hit count
                 self.hit_count += 1
 

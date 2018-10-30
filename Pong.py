@@ -5,6 +5,7 @@ from time import sleep
 if __name__ == '__main__':
     from Paddle import Paddle
     from Ball import Ball
+    from PowerUp import PowerUp
 
 DISPLAY_WIDTH = 1600
 DISPLAY_HEIGHT = 800
@@ -63,6 +64,11 @@ def main():
         # Draws the ball
         pygame.draw.circle(gameDisplay, WHITE, (int(ball.x), int(ball.y)), ball.radius)
 
+        # Draws powerUps
+        # TODO: make a for loop for the array of powers to draw if visible
+        if power.visibility:
+            pygame.draw.circle(gameDisplay, power.color, (power.x, power.y), 30)
+
         # Draws the score of each player on the top of the screen
         leftScoreText = score_font.render(str(score[0]), True, WHITE)
         gameDisplay.blit(leftScoreText, (DISPLAY_WIDTH / 2 - 75, 10))
@@ -118,6 +124,7 @@ def main():
     ball = Ball(DISPLAY_WIDTH / 2, DISPLAY_HEIGHT / 2, BALL_RADIUS, BALL_START_VEL, 0)
     game_exit = False
 
+    power = PowerUp(ball)
     # Input Handing loop
     while not game_exit:
         for event in pygame.event.get():
@@ -148,6 +155,9 @@ def main():
         ball.move()
         ball.collision(P1, P2)
 
+        # Check ball Collision with PowerUps
+        power.check_passive(ball)  # TODO: makes power an array of powerUps and call check_passive in a for loop (if not active:)
+        power.check_active(ball)
         # Check if there is a goal
         if ball.goal():
             P1.reset()
