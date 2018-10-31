@@ -13,6 +13,8 @@ from math import sqrt
         b. Please use the increase_length(...) as a template for creating new powerUp methods.
     4. Add the class method to the self.method array.
 """
+
+
 class PowerUp:
 
     def __init__(self, ball):

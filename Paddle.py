@@ -11,13 +11,10 @@ class Paddle:
         self.vel = 0
 
     def move(self):
-        # TODO: set screen boundaries
         self.y += self.vel
-
         # Creates paddle boundaries.
         self.y = max(self.height / 2, self.y)
         self.y = min(Pong.DISPLAY_HEIGHT - self.height / 2, self.y)
-        pass
 
     # Closes the gap between the two paddles.
     def enclose(self):
