@@ -86,8 +86,8 @@ class Ball:
                 self.vel += 1
             else:
                 if p1.height >= 40:
-                    p1.shrink()
-                    p2.shrink()
+                    p1.enclose()
+                    p2.enclose()
             self.hit_count = 0
 
     def goal(self):

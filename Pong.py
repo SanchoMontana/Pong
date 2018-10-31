@@ -60,14 +60,15 @@ def main():
                              [DISPLAY_WIDTH / 2 - 3, DISPLAY_HEIGHT / 20 * i, 6, DISPLAY_HEIGHT / 40])
         # Draw paddles
         pygame.draw.rect(gameDisplay, WHITE, [P1.x - P1.girth / 2, P1.y - P1.height / 2, P1.girth, P1.height])
-        pygame.draw.rect(gameDisplay, WHITE, [P2.x - P2.girth / 2, P2.y - P1.height / 2, P2.girth, P2.height])
+        pygame.draw.rect(gameDisplay, WHITE, [P2.x - P2.girth / 2, P2.y - P2.height / 2, P2.girth, P2.height])
         # Draws the ball
         pygame.draw.circle(gameDisplay, WHITE, (int(ball.x), int(ball.y)), ball.radius)
 
         # Draws powerUps
         # TODO: make a for loop for the array of powers to draw if visible
-        if power.visibility:
-            pygame.draw.circle(gameDisplay, power.color, (power.x, power.y), 30)
+        for i in power:
+            if i.visibility:
+                pygame.draw.circle(gameDisplay, i.color, (i.x, i.y), 30)
 
         # Draws the score of each player on the top of the screen
         leftScoreText = score_font.render(str(score[0]), True, WHITE)
@@ -119,12 +120,12 @@ def main():
         return scores
 
     score = [0, 0]
-    P1 = Paddle(PADDLE_GAP, DISPLAY_HEIGHT / 2, DISPLAY_HEIGHT / 4, PADDLE_GIRTH)
-    P2 = Paddle(DISPLAY_WIDTH - PADDLE_GAP, DISPLAY_HEIGHT / 2, DISPLAY_HEIGHT / 4, PADDLE_GIRTH)
+    P1 = Paddle(PADDLE_GAP, DISPLAY_HEIGHT / 2, DISPLAY_HEIGHT / 5, PADDLE_GIRTH)
+    P2 = Paddle(DISPLAY_WIDTH - PADDLE_GAP, DISPLAY_HEIGHT / 2, DISPLAY_HEIGHT / 5, PADDLE_GIRTH)
     ball = Ball(DISPLAY_WIDTH / 2, DISPLAY_HEIGHT / 2, BALL_RADIUS, BALL_START_VEL, 0)
     game_exit = False
-
-    power = PowerUp(ball)
+    power = []
+    power.append(PowerUp(ball))  # TODO: This is temporary, find a way to add a powerUp to the game every five seconds.
     # Input Handing loop
     while not game_exit:
         for event in pygame.event.get():
@@ -156,8 +157,11 @@ def main():
         ball.collision(P1, P2)
 
         # Check ball Collision with PowerUps
-        power.check_passive(ball)  # TODO: makes power an array of powerUps and call check_passive in a for loop (if not active:)
-        power.check_active(ball)
+        for i in power:
+            i.check_passive(ball)  # TODO: makes power an array of powerUps and call check_passive in a for loop (if not active:)
+            i.check_active(ball)
+            if i.expired:
+                power.remove(i)
         # Check if there is a goal
         if ball.goal():
             P1.reset()
