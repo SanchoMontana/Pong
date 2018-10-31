@@ -1,5 +1,5 @@
 import pygame
-from time import sleep
+from time import sleep, time
 
 
 if __name__ == '__main__':
@@ -18,6 +18,7 @@ FPS = 80  # Frames per second.
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 SCORE_TO_WIN = 5
+START_TIME = int(time())
 
 
 pygame.init()
@@ -118,14 +119,14 @@ def main():
                             pygame.quit()
                             quit()
         return scores
-
     score = [0, 0]
     P1 = Paddle(PADDLE_GAP, DISPLAY_HEIGHT / 2, DISPLAY_HEIGHT / 5, PADDLE_GIRTH)
     P2 = Paddle(DISPLAY_WIDTH - PADDLE_GAP, DISPLAY_HEIGHT / 2, DISPLAY_HEIGHT / 5, PADDLE_GIRTH)
     ball = Ball(DISPLAY_WIDTH / 2, DISPLAY_HEIGHT / 2, BALL_RADIUS, BALL_START_VEL, 0)
     game_exit = False
+    add_power = int(time())
     power = []
-    power.append(PowerUp(ball))  # TODO: This is temporary, find a way to add a powerUp to the game every five seconds.
+
     # Input Handing loop
     while not game_exit:
         for event in pygame.event.get():
@@ -156,12 +157,19 @@ def main():
         ball.move()
         ball.collision(P1, P2)
 
+        # Create PowerUp every ten seconds
+        if (int(time()) - START_TIME) % 10 == 0:
+            if add_power != int(time()):
+                power.append(PowerUp(ball))
+                add_power = int(time())
+
         # Check ball Collision with PowerUps
         for i in power:
             i.check_passive(ball)  # TODO: makes power an array of powerUps and call check_passive in a for loop (if not active:)
             i.check_active(ball)
             if i.expired:
                 power.remove(i)
+
         # Check if there is a goal
         if ball.goal():
             P1.reset()
@@ -181,6 +189,7 @@ def main():
                 ball.reset()
                 draw()
                 start_round(ball, -10)
+            power = []  # Clears the arena of any unused powerUps.
 
         # Update the game
         draw()
