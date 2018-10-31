@@ -7,14 +7,14 @@ if __name__ == '__main__':
     from Ball import Ball
     from PowerUp import PowerUp
 
-DISPLAY_WIDTH = 1600
-DISPLAY_HEIGHT = 800
+DISPLAY_WIDTH = 1200
+DISPLAY_HEIGHT = 700
 PADDLE_GAP = 60
 PADDLE_GIRTH = 20
 PADDLE_SPEED = 8
 BALL_RADIUS = 15
 BALL_START_VEL = 10
-FPS = 80  # Frames per second.
+FPS = 160  # Frames per second.
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 SCORE_TO_WIN = 5

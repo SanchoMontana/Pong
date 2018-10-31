@@ -21,7 +21,7 @@ class Paddle:
 
     # Closes the gap between the two paddles.
     def enclose(self):
-        if abs(self.x - Pong.DISPLAY_WIDTH) > 100:  # If the paddles aren't too close to the center line.
+        if abs(self.x - Pong.DISPLAY_WIDTH / 2) > 100:  # If the paddles aren't too close to the center line.
             if self.x < Pong.DISPLAY_WIDTH / 2:
                 self.x += 15
             else:

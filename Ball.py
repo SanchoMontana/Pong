@@ -85,9 +85,8 @@ class Ball:
             if self.vel < Pong.BALL_START_VEL + 2:
                 self.vel += 1
             else:
-                if p1.height >= 40:
-                    p1.enclose()
-                    p2.enclose()
+                p1.enclose()
+                p2.enclose()
             self.hit_count = 0
 
     def goal(self):
