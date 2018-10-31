@@ -9,6 +9,7 @@ if __name__ == '__main__':
 
 DISPLAY_WIDTH = 1200
 DISPLAY_HEIGHT = 700
+DISPLAY_HEIGHT = 700
 PADDLE_GAP = 60
 PADDLE_GIRTH = 20
 PADDLE_SPEED = 8
@@ -18,17 +19,18 @@ FPS = 160  # Frames per second.
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 SCORE_TO_WIN = 5
-START_TIME = int(time())
+START_TIME = int(time())  # This is used for creating powerUps.
 
 
 pygame.init()
 pygame.mouse.set_visible(False)
 gameDisplay = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT))
 clock = pygame.time.Clock()
-score_font = pygame.font.SysFont(None, 128)
+score_font = pygame.font.SysFont(None, DISPLAY_WIDTH // 20)
 alert_font = pygame.font.SysFont(None, 24)
 
 
+# Waits until the user is ready to start the next round.
 def start_round(ball, velocity):
     alert = alert_font.render("Press [space] to continue", True, WHITE)
     pygame.draw.rect(gameDisplay, BLACK,
@@ -66,21 +68,20 @@ def main():
         pygame.draw.circle(gameDisplay, WHITE, (int(ball.x), int(ball.y)), ball.radius)
 
         # Draws powerUps
-        # TODO: make a for loop for the array of powers to draw if visible
         for i in power:
             if i.visibility:
                 pygame.draw.circle(gameDisplay, i.color, (i.x, i.y), 30)
 
         # Draws the score of each player on the top of the screen
         leftScoreText = score_font.render(str(score[0]), True, WHITE)
-        gameDisplay.blit(leftScoreText, (DISPLAY_WIDTH / 2 - 75, 10))
+        gameDisplay.blit(leftScoreText, (DISPLAY_WIDTH / 2 - leftScoreText.get_width() - 20, 10))
 
         rightScoreText = score_font.render(str(score[1]), True, WHITE)
-        gameDisplay.blit(rightScoreText, (DISPLAY_WIDTH / 2 + 25, 10))
+        gameDisplay.blit(rightScoreText, (DISPLAY_WIDTH / 2 + 20, 10))
         
         pygame.display.update()
 
-    # Handles the event of one player reaching the winning score.
+    # Checks if one player reached the winning score. If so, it displays the winner and restarts the game.
     def end_of_game(scores):
         if scores[0] >= SCORE_TO_WIN or scores[1] >= SCORE_TO_WIN:
             draw()
@@ -119,13 +120,14 @@ def main():
                             pygame.quit()
                             quit()
         return scores
+
     score = [0, 0]
-    P1 = Paddle(PADDLE_GAP, DISPLAY_HEIGHT / 2, DISPLAY_HEIGHT / 5, PADDLE_GIRTH)
-    P2 = Paddle(DISPLAY_WIDTH - PADDLE_GAP, DISPLAY_HEIGHT / 2, DISPLAY_HEIGHT / 5, PADDLE_GIRTH)
+    P1 = Paddle(PADDLE_GAP, DISPLAY_HEIGHT / 2, DISPLAY_HEIGHT / 4, PADDLE_GIRTH)
+    P2 = Paddle(DISPLAY_WIDTH - PADDLE_GAP, DISPLAY_HEIGHT / 2, DISPLAY_HEIGHT / 4, PADDLE_GIRTH)
     ball = Ball(DISPLAY_WIDTH / 2, DISPLAY_HEIGHT / 2, BALL_RADIUS, BALL_START_VEL, 0)
-    game_exit = False
+    game_exit = False  # Exits the main loop if this is True.
     add_power = int(time())
-    power = []
+    power = []  # Will be appended every x seconds.
 
     # Input Handing loop
     while not game_exit:
@@ -165,7 +167,7 @@ def main():
 
         # Check ball Collision with PowerUps
         for i in power:
-            i.check_passive(ball)  # TODO: makes power an array of powerUps and call check_passive in a for loop (if not active:)
+            i.check_passive(ball)
             i.check_active(ball)
             if i.expired:
                 power.remove(i)

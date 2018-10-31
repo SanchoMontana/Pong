@@ -3,6 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="c7b1fe6e-918b-4404-a554-e47d51ba3daf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/Paddle.py" beforeDir="false" afterPath="$PROJECT_DIR$/Paddle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pong.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pong.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PowerUp.py" beforeDir="false" afterPath="$PROJECT_DIR$/PowerUp.py" afterDir="false" />
+>>>>>>> fc1bd882014ede09575d051233996a3938969e10
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,10 +23,10 @@
           <entry key="project.closed" value="14" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.2" value="2" />
-          <entry key="project.open.time.3" value="2" />
+          <entry key="project.open.time.3" value="3" />
           <entry key="project.open.time.4" value="5" />
           <entry key="project.open.time.5" value="6" />
-          <entry key="project.opened" value="16" />
+          <entry key="project.opened" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -36,14 +42,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="12" />
-          <entry key="py" value="15626" />
+          <entry key="py" value="16039" />
           <entry key="txt" value="41" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="53" />
-          <entry key="Python" value="15626" />
+          <entry key="Python" value="16039" />
         </counts>
       </usages-collector>
     </session>
@@ -73,6 +79,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pong.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -80,16 +87,38 @@
               <caret line="18" column="17" lean-forward="true" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Pong.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+                <marker date="1541005020380" expanded="true" signature="71:161" ph="..." />
+                <marker date="1541005020380" expanded="true" signature="3033:5420" ph="..." />
+>>>>>>> fc1bd882014ede09575d051233996a3938969e10
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Paddle.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="351">
               <caret line="21" column="45" lean-forward="true" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Paddle.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="67" selection-start-line="16" selection-start-column="67" selection-end-line="16" selection-end-column="67" />
+              <folding>
+                <marker date="1541004729811" expanded="true" signature="27:32" ph="..." />
+              </folding>
+>>>>>>> fc1bd882014ede09575d051233996a3938969e10
             </state>
           </provider>
         </entry>
@@ -97,10 +126,18 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Ball.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="1496">
               <caret line="88" column="28" lean-forward="true" selection-start-line="88" selection-start-column="28" selection-end-line="88" selection-end-column="28" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
+=======
+            <state relative-caret-position="-150">
+              <caret line="53" column="30" lean-forward="true" selection-start-line="53" selection-start-column="30" selection-end-line="53" selection-end-column="30" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+                <marker date="1540950854574" expanded="true" signature="39:44" ph="..." />
+>>>>>>> fc1bd882014ede09575d051233996a3938969e10
               </folding>
             </state>
           </provider>
@@ -109,8 +146,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PowerUp.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state>
               <caret column="11" lean-forward="true" selection-start-column="11" selection-end-line="8" selection-end-column="27" />
+=======
+            <state relative-caret-position="-257">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+                <marker date="1541004729807" expanded="true" signature="748:749" ph="..." />
+              </folding>
+>>>>>>> fc1bd882014ede09575d051233996a3938969e10
             </state>
           </provider>
         </entry>
@@ -143,6 +189,8 @@
       <find>commands</find>
       <find>function</find>
       <find>shri</find>
+      <find>winner</find>
+      <find>SCORE</find>
     </findStrings>
     <replaceStrings>
       <replace>6</replace>
@@ -271,7 +319,11 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32915717" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Run" order="2" weight="0.13900709" />
+=======
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.14009112" />
+>>>>>>> fc1bd882014ede09575d051233996a3938969e10
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997722" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -315,35 +367,69 @@
     <entry file="file://$PROJECT_DIR$/sound.py" />
     <entry file="file://$PROJECT_DIR$/Pong.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="306">
           <caret line="18" column="17" lean-forward="true" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
+=======
+        <state relative-caret-position="-257">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <marker date="1541004729807" expanded="true" signature="748:749" ph="..." />
+>>>>>>> fc1bd882014ede09575d051233996a3938969e10
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PowerUp.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state>
           <caret column="11" lean-forward="true" selection-start-column="11" selection-end-line="8" selection-end-column="27" />
+=======
+        <state relative-caret-position="-150">
+          <caret line="53" column="30" lean-forward="true" selection-start-line="53" selection-start-column="30" selection-end-line="53" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <marker date="1540950854574" expanded="true" signature="39:44" ph="..." />
+          </folding>
+>>>>>>> fc1bd882014ede09575d051233996a3938969e10
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Ball.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="1496">
           <caret line="88" column="28" lean-forward="true" selection-start-line="88" selection-start-column="28" selection-end-line="88" selection-end-column="28" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
+=======
+        <state relative-caret-position="240">
+          <caret line="16" column="67" selection-start-line="16" selection-start-column="67" selection-end-line="16" selection-end-column="67" />
+          <folding>
+            <marker date="1541004729811" expanded="true" signature="27:32" ph="..." />
+>>>>>>> fc1bd882014ede09575d051233996a3938969e10
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Paddle.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="351">
           <caret line="21" column="45" lean-forward="true" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
+=======
+        <state relative-caret-position="150">
+          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <marker date="1541005020380" expanded="true" signature="71:161" ph="..." />
+            <marker date="1541005020380" expanded="true" signature="3033:5420" ph="..." />
+          </folding>
+>>>>>>> fc1bd882014ede09575d051233996a3938969e10
         </state>
       </provider>
     </entry>
