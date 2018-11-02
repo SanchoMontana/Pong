@@ -20,15 +20,16 @@ class PowerUp:
     def __init__(self, ball):
         RED = (255, 0, 0)
         BLUE = (0, 0, 255)
-        colors = [RED, BLUE]
+        GREEN = (0, 255, 0)
+        colors = [RED, BLUE, GREEN]
         self.ballObj = ball
         self.radius = 15
-        self.id = randint(0, 1)
+        self.id = randint(0, 2)
         self.x = randint(Pong.DISPLAY_WIDTH / 2 - 100, Pong.DISPLAY_WIDTH / 2 + 100)
         self.y = randint(50, Pong.DISPLAY_HEIGHT - 50)
         self.color = colors[self.id]
-        self.duration = [10, 10]  # Seconds
-        self.method = [self.increase_length, self.decrease_length]
+        self.duration = [10, 10, 10]  # Seconds
+        self.method = [self.increase_length, self.decrease_length, self.confuse]
         self.start_time = None
         self.visibility = True
         self.affected_paddle = None
@@ -55,6 +56,21 @@ class PowerUp:
         else:
             if self.affected_paddle:
                 self.affected_paddle.height += 50
+                self.expired = True
+
+    # PowerUp that switches a paddle's up and down keys.
+    def confuse(self, ball, revert=False):
+        if not revert:
+            if ball.last:
+                self.affected_paddle = ball.last
+                temp = ball.last.move_up
+                ball.last.move_up = ball.last.move_down
+                ball.last.move_down = temp
+        else:
+            if self.affected_paddle:
+                temp = self.affected_paddle.move_up
+                self.affected_paddle.move_up = self.affected_paddle.move_down
+                self.affected_paddle.move_down = temp
                 self.expired = True
 
     # Checks if the ball makes contact with the powerUp.

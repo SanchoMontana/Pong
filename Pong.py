@@ -8,7 +8,7 @@ if __name__ == '__main__':
     from PowerUp import PowerUp
 
 DISPLAY_WIDTH = 1200
-DISPLAY_HEIGHT = 7`00
+DISPLAY_HEIGHT = 700
 PADDLE_GAP = 60
 PADDLE_GIRTH = 20
 PADDLE_SPEED = 8
@@ -121,8 +121,8 @@ def main():
         return scores
 
     score = [0, 0]
-    P1 = Paddle(PADDLE_GAP, DISPLAY_HEIGHT / 2, DISPLAY_HEIGHT / 4, PADDLE_GIRTH)
-    P2 = Paddle(DISPLAY_WIDTH - PADDLE_GAP, DISPLAY_HEIGHT / 2, DISPLAY_HEIGHT / 4, PADDLE_GIRTH)
+    P1 = Paddle(PADDLE_GAP, DISPLAY_HEIGHT / 2, DISPLAY_HEIGHT / 4, PADDLE_GIRTH, pygame.K_w, pygame.K_s)
+    P2 = Paddle(DISPLAY_WIDTH - PADDLE_GAP, DISPLAY_HEIGHT / 2, DISPLAY_HEIGHT / 4, PADDLE_GIRTH, pygame.K_UP, pygame.K_DOWN)
     ball = Ball(DISPLAY_WIDTH / 2, DISPLAY_HEIGHT / 2, BALL_RADIUS, BALL_START_VEL, 0)
     game_exit = False  # Exits the main loop if this is True.
     add_power = int(time())
@@ -134,22 +134,22 @@ def main():
             if event.type == pygame.QUIT:
                 game_exit = True  # This allows the X in the corner to close the window.
             elif event.type == pygame.KEYDOWN:  # Everything in this elif statement has key input handling
-                if event.key == pygame.K_w:
+                if event.key == P1.move_up:
                     P1.vel -= PADDLE_SPEED
-                elif event.key == pygame.K_s:
+                elif event.key == P1.move_down:
                     P1.vel += PADDLE_SPEED
-                elif event.key == pygame.K_UP:
+                elif event.key == P2.move_up:
                     P2.vel -= PADDLE_SPEED
-                elif event.key == pygame.K_DOWN:
+                elif event.key == P2.move_down:
                     P2.vel += PADDLE_SPEED
             elif event.type == pygame.KEYUP:  # Event handling when key is lifted.
-                if event.key == pygame.K_w:
+                if event.key == P1.move_up:
                     P1.vel += PADDLE_SPEED
-                elif event.key == pygame.K_s:
+                elif event.key == P1.move_down:
                     P1.vel -= PADDLE_SPEED
-                elif event.key == pygame.K_UP:
+                elif event.key == P2.move_up:
                     P2.vel += PADDLE_SPEED
-                elif event.key == pygame.K_DOWN:
+                elif event.key == P2.move_down:
                     P2.vel -= PADDLE_SPEED
 
         # Move Paddles and Ball
