@@ -6,11 +6,12 @@ class Ball:
     def __init__(self, x, y, radius, x_vel, y_vel):
         self.x = x
         self.y = y
+        self.starting_radius = radius
         self.radius = radius
         self.x_vel = x_vel
         self.y_vel = y_vel
         self.vel = (self.x_vel ** 2 + self.y_vel ** 2) ** 0.5
-        self.tolerance = 5  # Allowing a collision if the center of the ball is just off the paddle
+        self.tolerance = radius / 2  # Allowing a collision if the center of the ball is just off the paddle
         self.hit_count = 0  # This will allow for the velocity of the ball to increase every 5 paddle hits.
         self.last = None
 
@@ -102,3 +103,4 @@ class Ball:
         self.y_vel = 0
         self.vel = 0
         self.hit_count = 0
+        self.radius = self.starting_radius

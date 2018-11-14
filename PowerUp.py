@@ -21,15 +21,17 @@ class PowerUp:
         RED = (255, 0, 0)
         BLUE = (0, 0, 255)
         GREEN = (0, 255, 0)
-        colors = [RED, BLUE, GREEN]
+        YELLOW = (255, 255, 0)
+        PURPLE = (255, 0, 255)
+        colors = [RED, BLUE, GREEN, YELLOW, PURPLE]
         self.ballObj = ball
         self.radius = 15
-        self.id = randint(0, 2)
+        self.id = randint(4, 4)
         self.x = randint(Pong.DISPLAY_WIDTH / 2 - 100, Pong.DISPLAY_WIDTH / 2 + 100)
         self.y = randint(50, Pong.DISPLAY_HEIGHT - 50)
         self.color = colors[self.id]
-        self.duration = [10, 10, 10]  # Seconds
-        self.method = [self.increase_length, self.decrease_length, self.confuse]
+        self.duration = [10, 10, 10, 10, 10]  # Seconds
+        self.method = [self.increase_length, self.decrease_length, self.confuse, self.enlarge_ball, self.shrink_ball]
         self.start_time = None
         self.visibility = True
         self.affected_paddle = None
@@ -72,6 +74,24 @@ class PowerUp:
                 self.affected_paddle.move_up = self.affected_paddle.move_down
                 self.affected_paddle.move_down = temp
                 self.expired = True
+
+    # PowerUp that increases the ball size.
+    def enlarge_ball(self, ball, revert=False):
+        if not revert:
+            if ball.last:
+                ball.radius *= 2
+        else:
+            ball.radius /= 2
+            self.expired = True
+
+    # PowerUp that decreases the ball size.
+    def shrink_ball(self, ball, revert=False):
+        if not revert:
+            if ball.last:
+                ball.radius /= 2
+        else:
+            ball.radius *= 2
+            self.expired = True
 
     # Checks if the ball makes contact with the powerUp.
     def check_passive(self, ball):

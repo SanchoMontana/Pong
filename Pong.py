@@ -12,7 +12,7 @@ DISPLAY_HEIGHT = 700
 PADDLE_GAP = 60
 PADDLE_GIRTH = 20
 PADDLE_SPEED = 8
-BALL_RADIUS = 15
+BALL_RADIUS = 25
 BALL_START_VEL = 10
 FPS = 80  # Frames per second.
 WHITE = (255, 255, 255)
@@ -64,7 +64,7 @@ def main():
         pygame.draw.rect(gameDisplay, WHITE, [P1.x - P1.girth / 2, P1.y - P1.height / 2, P1.girth, P1.height])
         pygame.draw.rect(gameDisplay, WHITE, [P2.x - P2.girth / 2, P2.y - P2.height / 2, P2.girth, P2.height])
         # Draws the ball
-        pygame.draw.circle(gameDisplay, WHITE, (int(ball.x), int(ball.y)), ball.radius)
+        pygame.draw.circle(gameDisplay, WHITE, (int(ball.x), int(ball.y)), int(ball.radius))
 
         # Draws powerUps
         for i in power:
