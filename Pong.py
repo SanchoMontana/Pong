@@ -121,8 +121,10 @@ def main():
         return scores
 
     score = [0, 0]
-    P1 = Paddle(PADDLE_GAP, DISPLAY_HEIGHT / 2, DISPLAY_HEIGHT / 4, PADDLE_GIRTH, pygame.K_w, pygame.K_s)
-    P2 = Paddle(DISPLAY_WIDTH - PADDLE_GAP, DISPLAY_HEIGHT / 2, DISPLAY_HEIGHT / 4, PADDLE_GIRTH, pygame.K_UP, pygame.K_DOWN)
+    P1 = Paddle(PADDLE_GAP, DISPLAY_HEIGHT / 2,
+                DISPLAY_HEIGHT / 4, PADDLE_GIRTH, pygame.K_w, pygame.K_s)
+    P2 = Paddle(DISPLAY_WIDTH - PADDLE_GAP, DISPLAY_HEIGHT / 2,
+                DISPLAY_HEIGHT / 4, PADDLE_GIRTH, pygame.K_UP, pygame.K_DOWN)
     ball = Ball(DISPLAY_WIDTH / 2, DISPLAY_HEIGHT / 2, BALL_RADIUS, BALL_START_VEL, 0)
     game_exit = False  # Exits the main loop if this is True.
     add_power = int(time())
