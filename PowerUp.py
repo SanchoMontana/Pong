@@ -26,7 +26,7 @@ class PowerUp:
         colors = [RED, BLUE, GREEN, YELLOW, PURPLE]
         self.ballObj = ball
         self.radius = 15
-        self.id = randint(4, 4)
+        self.id = randint(0, 4)
         self.x = randint(Pong.DISPLAY_WIDTH / 2 - 100, Pong.DISPLAY_WIDTH / 2 + 100)
         self.y = randint(50, Pong.DISPLAY_HEIGHT - 50)
         self.color = colors[self.id]
