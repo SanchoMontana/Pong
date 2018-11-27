@@ -3,6 +3,7 @@ import Pong
 
 class Paddle:
     def __init__(self, x, y, height, girth, up, down):
+        self.starting_x = x
         self.x = x
         self.y = y
         self.starting_height = height
@@ -29,6 +30,7 @@ class Paddle:
                 self.x -= 15
 
     def reset(self):
+        self.x = self.starting_x
         self.y = Pong.DISPLAY_HEIGHT / 2
         self.vel = 0
         self.height = self.starting_height  # This is here in case the paddles shrunk the previous round.
