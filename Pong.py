@@ -7,8 +7,8 @@ if __name__ == '__main__':
     from Ball import Ball
     from PowerUp import PowerUp
 
-DISPLAY_WIDTH = 1200
-DISPLAY_HEIGHT = 700
+DISPLAY_WIDTH = 1600
+DISPLAY_HEIGHT = 900
 PADDLE_GAP = 60
 PADDLE_GIRTH = 20
 PADDLE_SPEED = 8
@@ -18,7 +18,7 @@ FPS = 80  # Frames per second.
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 SCORE_TO_WIN = 5
-START_TIME = int(time())  # This is used for creating powerUps.
+# START_TIME = int(time())  # This is used for creating powerUps.
 
 
 pygame.init()
@@ -66,10 +66,12 @@ def main():
         # Draws the ball
         pygame.draw.circle(gameDisplay, WHITE, (int(ball.x), int(ball.y)), int(ball.radius))
 
+        """
         # Draws powerUps
         for i in power:
             if i.visibility:
                 pygame.draw.circle(gameDisplay, i.color, (i.x, i.y), 30)
+        """
 
         # Draws the score of each player on the top of the screen
         leftScoreText = score_font.render(str(score[0]), True, WHITE)
@@ -127,8 +129,10 @@ def main():
                 DISPLAY_HEIGHT / 4, PADDLE_GIRTH, pygame.K_UP, pygame.K_DOWN)
     ball = Ball(DISPLAY_WIDTH / 2, DISPLAY_HEIGHT / 2, BALL_RADIUS, BALL_START_VEL, 0)
     game_exit = False  # Exits the main loop if this is True.
+    """
     add_power = int(time())
     power = []  # Will be appended every x seconds.
+    """
 
     # Input Handing loop
     while not game_exit:
@@ -160,6 +164,7 @@ def main():
         ball.move()
         ball.collision(P1, P2)
 
+        """
         # Create PowerUp every ten seconds
         if (int(time()) - START_TIME) % 10 == 0:
             if add_power != int(time()):
@@ -172,6 +177,7 @@ def main():
             i.check_active(ball)
             if i.expired:
                 power.remove(i)
+        """
 
         # Check if there is a goal
         if ball.goal():
@@ -192,7 +198,7 @@ def main():
                 ball.reset()
                 draw()
                 start_round(ball, -10)
-            power = []  # Clears the arena of any unused powerUps.
+            # power = []  # Clears the arena of any unused powerUps.
 
         # Update the game
         draw()
