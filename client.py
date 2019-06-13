@@ -1,6 +1,7 @@
 import pygame
 import socket
 import struct
+import sys
 import typevalue
 from threading import Thread
 from time import sleep, time
@@ -10,14 +11,16 @@ from multiprocessing.dummy import Pool as ThreadPool
 initialized = False
 defaults = []
 # create a listener socket, and get information from server
+stop_threads = False
+
 
 class SocketClass:
 
     def listen(self, conn):
         global defaults
         global initialized
+        global stop_threads
         while True:
-            sleep(0.2)
             data = conn.recv(16)
             if not data:
                 continue
@@ -33,40 +36,43 @@ class SocketClass:
                 data = struct.pack('hl', 0x04, 1)
                 initialized = True
                 sockOut.send(data)
+            print(data)
+            if stop_threads:
+                break
         conn.close()
 
     def talk(self, sockIn, sockOut):
+        global stop_threads
         game_exit = False
         while not game_exit:
             tags = []
             values = []
-            try:
-                for event in pygame.event.get():
-                    tags = []
-                    values = []
-                    if event.type == pygame.QUIT:
-                        tags.append(typevalue.QUIT)
+            for event in pygame.event.get():
+                tags = []
+                values = []
+                if event.type == pygame.QUIT:
+                    tags.append(typevalue.clientEvent['QUIT'])
+                    values.append(1)
+                    game_exit = True  # This allows the X in the corner to close the window.
+                    stop_threads = True
+                elif event.type == pygame.KEYDOWN:  # Everything in this elif statement has key input handling
+                    if event.key == pygame.K_UP:
+                        tags.append(typevalue.clientEvent['UP'])
                         values.append(1)
-                        game_exit = True  # This allows the X in the corner to close the window.
-                    elif event.type == pygame.KEYDOWN:  # Everything in this elif statement has key input handling
-                        if event.key == pygame.K_UP:
-                            tags.append(typevalue.UP)
-                            values.append(1)
-                        elif event.key == pygame.K_DOWN:
-                            tags.append(typevalue.DOWN)
-                            values.append(1)
-                    elif event.type == pygame.KEYUP:  # Event handling when key is lifted.
-                        if event.key == pygame.K_UP:
-                            tags.append(typevalue.UP)
-                            values.append(0)
-                        elif event.key == pygame.K_DOWN:
-                            tags.append(typevalue.DOWN)
-                            values.append(0)
-                for ind in range(len(tags)):
-                    data = struct.pack('hl', tags[ind], values[ind])
-                    sockOut.send(data)
-            except:
-                pass
+                    elif event.key == pygame.K_DOWN:
+                        tags.append(typevalue.clientEvent['DOWN'])
+                        values.append(1)
+                elif event.type == pygame.KEYUP:  # Event handling when key is lifted.
+                    if event.key == pygame.K_UP:
+                        tags.append(typevalue.clientEvent['UP'])
+                        values.append(0)
+                    elif event.key == pygame.K_DOWN:
+                        tags.append(typevalue.clientEvent['DOWN'])
+                        values.append(0)
+            for ind in range(len(tags)):
+                data = struct.pack('hl', tags[ind], values[ind])
+                sockOut.send(data)
+        print("QUITTING")
         pygame.quit()
         quit()
 
@@ -83,9 +89,8 @@ def pygameInitialize():
     #quit()
 
 
-
 if __name__ == '__main__':
-    server = ('127.0.0.1', 2000)
+    server = ('localhost', 2000)
     client = ('localhost', 1500)
     sockOut = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sockOut.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)

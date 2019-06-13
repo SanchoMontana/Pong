@@ -13,12 +13,12 @@ P2_POS = 0x0A
 NEW_ROUND = 0X0B
 
 
-# Client events
-UP = 0x01
-DOWN = 0x02
-QUIT = 0x03
-INITIALIZED = 0x04
-
+clientEvent = {
+    'UP': 0x01,
+    'DOWN': 0x02,
+    'QUIT': 0x03,
+    'INITIALIZED': 0x04,
+}
 
 sendOnce = {
     'DISPLAY_WIDTH': 0X00,
@@ -47,11 +47,8 @@ defaults = {
     'FPS': 30,
     'SCORE_TO_WIN': 5,
     'BALL_POS': 1000,  #FIXME
-    'BALL_VEL': 0,
     'P1_POS': 400,
-    'P1_VEL': 0,
     'P2_POS': 400,
-    'P2_VEL': 0,
     'NEW_ROUND': 0
 }
 
